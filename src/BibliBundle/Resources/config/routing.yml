@@ -1,0 +1,3 @@
+bibli_homepage:
+    path:     /
+    defaults: { _controller: BibliBundle:Default:index }
