@@ -248,4 +248,27 @@ class Livre
     {
         return $this->dateRetour;
     }
+
+    /**
+     * Set user_emprunt
+     *
+     * @param \UserBundle\Entity\User $userEmprunt
+     * @return Livre
+     */
+    public function setUserEmprunt(\UserBundle\Entity\User $userEmprunt = null)
+    {
+        $this->user_emprunt = $userEmprunt;
+
+        return $this;
+    }
+
+    /**
+     * Get user_emprunt
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getUserEmprunt()
+    {
+        return $this->user_emprunt;
+    }
 }
