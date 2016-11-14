@@ -48,6 +48,13 @@ class Livre
      * @ORM\Column(name="couverture", type="string", length=255)
      */
     private $couverture;
+    
+    
+    /**
+        * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+        * @ORM\JoinColumn(nullable=true)
+    */
+    private $user_emprunt;
 
     /**
      * @var \DateTime
