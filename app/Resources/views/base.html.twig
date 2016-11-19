@@ -14,6 +14,7 @@
       <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
    </head>
    <body>
+       <div id="menu">
       <div class="container-fixed">
          <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -49,7 +50,7 @@
                      </li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                     <li> <a href="#" > <span class="glyphicon glyphicon-log-in"></span> Se connecter </a></li>
+                     <li> <a href="{{ path('fos_user_security_login') }}" > <span class="glyphicon glyphicon-log-in"></span> Se connecter </a></li>
                   </ul>
                </div>
                <!--/.nav-collapse -->
@@ -57,7 +58,11 @@
          </div>
       </div>
        
-      {% block body %}{% endblock %}
+   </div>
+       
+      <div class="container">
+        {% block body %}{% endblock %} 
+      </div>
       {% block javascripts %}{% endblock %}
      
         <div id="footer" class="container">

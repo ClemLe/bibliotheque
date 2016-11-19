@@ -1,0 +1,53 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+{% if error %}
+    <div>
+    	<div id="messageUser">
+			<div class='alert alert-danger fade in' >
+	        	<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>{{ error.messageKey|trans(error.messageData, 'security') }}
+	    	</div>
+    	</div>
+    </div>
+{% endif %}
+
+<form id="formLogin" class="form-horizontal" role="form" method="post" action="{{ path("fos_user_security_check") }}" method="post">
+
+	<div class="form-group">
+	 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	</div>
+       
+       <div class="wrapper">
+		<form id="formLogin" class="form-horizontal" role="form" method="post" action="{{ path("fos_user_security_check") }}" method="post">       
+		    <h3 class="form-signin-heading">Bienvenue! Veuillez vous identifier !</h3>
+			  <hr class="colorgraph"><br>
+			  
+	<div class="form-group">
+		
+			<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required="required"/>
+		
+	</div>
+
+	<div class="form-group">
+		
+			<input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+		
+	</div>
+
+
+	<div class="form-group">
+		
+            {{ 'security.login.remember_me'|trans }} <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+	</div>
+	<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">{{ 'security.login.submit'|trans }}</button>  			
+		</form>	
+       </div>
+           
+
+
+
+
+{% endblock fos_user_content %}
