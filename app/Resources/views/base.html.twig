@@ -7,7 +7,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
       
-      <title>{% block title %}Welcome!{% endblock %}</title>
+      <title>{% block title %}Accueil{% endblock %}</title>
       
       {% block stylesheets %}{% endblock %}
       
@@ -41,7 +41,7 @@
                         <li> <a href="{{ path('fos_user_security_logout') }}" > <span class="glyphicon glyphicon-log-out"></span> Se déconnecter </a></li>
                        {% else %}
                       <li> <a href="{{ path('fos_user_security_login') }}" > <span class="glyphicon glyphicon-log-in"></span> Se connecter </a></li>
-                      <li> <a href="{{ path('fos_user_security_login') }}" > <span class="glyphicon glyphicon-edit"></span> Créer un compte </a></li>
+                      <li> <a href="{{ path('fos_user_registration_register') }}" > <span class="glyphicon glyphicon-edit"></span> Créer un compte </a></li>
                       {% endif %}
                   </ul>
                </div>
