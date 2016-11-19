@@ -1,3 +1,8 @@
 bibli_homepage:
     path:     /
     defaults: { _controller: BibliBundle:Default:index }
+
+
+bibli_contact_home:
+    path:     /contact
+    defaults: { _controller: BibliBundle:Contact:indexContact }

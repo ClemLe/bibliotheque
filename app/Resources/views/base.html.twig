@@ -25,10 +25,10 @@
                   <span class="icon-bar"></span>
                   </button>
                   <a class="navbar-brand" href="{{ path('bibli_homepage') }}"><span class="glyphicon glyphicon-home"></span>   Bibliotheque</a>
-               </div>
+               </div> 
                <div class="collapse navbar-collapse">
                   <ul class="nav navbar-nav">
-                     <li><a href="#"> <span class="glyphicon glyphicon-earphone"></span>  Nous contacter</a></li>
+                     <li><a href="{{ path('bibli_contact_home') }}"> <span class="glyphicon glyphicon-envelope"></span>  Nous contacter</a></li>
                      
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li><a href="#"> <span class="glyphicon glyphicon-search"></span>  Rechercher un livre</a></li>
