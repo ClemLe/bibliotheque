@@ -4,6 +4,14 @@
     
 <div class="container">
     <div class="row">
+        {% if codeErreur == 1 %}
+        <div id="messageUser">
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+               <strong>Bravo !</strong> Le message a bien été envoyé !
+            </div>
+        </div>
+        {% endif %} 
         <h2>Un livre à suggerer ? Une question? Envoyer nous un message !</h2>
         <div class="col-md-8">      
             <div class="well well-sm">
@@ -25,19 +33,18 @@
                         <div class="form-group">
                             <label for="subject">Sujet</label>
                             <select id="subject" name="subject" class="form-control" required="required">
-                                <option value="na" selected="">Choisir une catégorie:</option>
-                                <option value="service">Livre à proposer</option>
-                                <option value="suggestions">Proposition d'amélioration du site</option>
-                                <option value="product">Problème sur le site web</option>
+                                <option disabled selected value>Choisir une catégorie:</option>
+                                <option value="livre">Livre à proposer</option>
+                                <option value="amelioration">Proposition d'amélioration du site</option>
+                                <option value="probleme">Problème sur le site web</option>
+                                 <option value="autre">Autre</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">
-                                Message</label>
-                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                placeholder="Message"></textarea>
+                            <label for="name">Message</label>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Message"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
