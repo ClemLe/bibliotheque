@@ -10,4 +10,4 @@ bibli_contact_home:
     
 bibli_ajouter_livre:
     path:     /ajouter-livre
-    defaults: { _controller: BibliBundle:Livre:index }
+    defaults: { _controller: BibliBundle:Livre:ajouter }
