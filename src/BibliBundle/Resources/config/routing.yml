@@ -6,3 +6,8 @@ bibli_homepage:
 bibli_contact_home:
     path:     /contact
     defaults: { _controller: BibliBundle:Contact:indexContact }
+    
+    
+bibli_ajouter_livre:
+    path:     /ajouter-livre
+    defaults: { _controller: BibliBundle:Livre:index }
