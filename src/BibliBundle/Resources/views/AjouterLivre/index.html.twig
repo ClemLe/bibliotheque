@@ -13,13 +13,12 @@
             </div>
         </div>
         {% endif %} 
-        
-        <div class="col-md-8">      
-            <div class="well well-sm">
-                <form action="{{ path('bibli_ajouter_livre') }}" method="post">
-                <div class="row">
-                    <div class="col-md-6">
-                        
+       <div class="wrapper">
+       
+                <form class="form-horizontal" action="{{ path('bibli_ajouter_livre') }}" method="post">
+           
+                    
+                        <h3 class="form-signin-heading">Remplir le formulaire pour ajouter un livre !</h3>
                         <div class="form-group">
                             <label for="titre">
                                Titre</label>
@@ -37,14 +36,14 @@
                                Résumé</label>
                             <input type="text" class="form-control" id="resume" name="resume" placeholder="Entrer le resumé du livre" required="required" />
                         </div>
-                        
-                        
-                    <div class="col-md-12">
-                        <button type="submit" name='action'class="btn btn-primary pull-right" id="btnContactUs">Ajouter le livre</button>
-                    </div>
-                </div>
+                 
+                        <button type="submit" name='action'class="btn btn-lg btn-primary btn-block" id="btnContactUs">Ajouter le livre</button>
+               
+                
+             
                 </form>
-            </div>
-        </div>     
+       </div>
+
+   
  
  {% endblock%}
