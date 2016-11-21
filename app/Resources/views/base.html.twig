@@ -33,7 +33,8 @@
                      
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li><a href="#"> <span class="glyphicon glyphicon-search"></span>  Rechercher un livre</a></li>
-                        <li><a href="#"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>              
+                        <li><a href="#"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>
+                         <li><a href="{{ path('bibli_ajouter_livre') }}"> <span class="glyphicon glyphicon-plus"></span>  Ajouter un livre</a></li>       
                     {% endif %}
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
