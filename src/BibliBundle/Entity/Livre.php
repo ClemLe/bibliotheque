@@ -59,21 +59,21 @@ class Livre
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateEmprunt", type="datetime")
+     * @ORM\Column(name="dateEmprunt", type="datetime",nullable=true)
      */
     private $dateEmprunt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateReservation", type="datetime")
+     * @ORM\Column(name="dateReservation", type="datetime",nullable=true))
      */
     private $dateReservation;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateRetour", type="datetime")
+     * @ORM\Column(name="dateRetour", type="datetime",nullable=true)
      */
     private $dateRetour;
 
