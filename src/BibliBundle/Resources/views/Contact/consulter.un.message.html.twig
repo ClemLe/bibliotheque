@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    
+    <div class="wrapper">
+       
+                            
+        <p><a href="{{ path('bibli_consulter_liste_messages') }}" class="btn btn-lg btn-primary btn-block">Revenir sur la liste des messages</a></p>
+                    
+                  
+                        <div class="form-group">
+                            <label for="titre">
+                               Nom de l'auteur</label>
+                            <input type="text" class="form-control" id="titre" name="titre"  value=" {{message.authorname}}" readonly="true" />
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="auteur">
+                               Sujet</label>
+                            <input type="text" class="form-control" id="auteur" name="auteur" value=" {{message.subject}}" readonly="true" />
+                        </div>
+        
+        
+                        <div class="form-group">
+                            <label for="auteur">
+                               Mail</label>
+                            <input type="text" class="form-control" id="auteur" name="auteur" value=" {{message.email}}" readonly="true" />
+                        </div>
+                        
+                        
+                         <div class="form-group">
+                            <label for="resume">
+                               Message</label>
+                             <textarea class="form-control" id="resume" name="resume" readonly="true">{{message.message|raw}}</textarea>
+                        </div>
+                 
+                        <button type="submit" name='action'class="btn btn-lg btn-danger btn-block" id="btnContactUs">Supprimer le message</button> 
+                       
+                        
+       </div>
+
+   
+{% endblock %}

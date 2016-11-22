@@ -34,7 +34,32 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li><a href="#"> <span class="glyphicon glyphicon-search"></span>  Rechercher un livre</a></li>
                         <li><a href="#"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>
-                         <li><a href="{{ path('bibli_ajouter_livre') }}"> <span class="glyphicon glyphicon-plus"></span>  Ajouter un livre</a></li>       
+                        
+                        {% if is_granted("ROLE_EMPLOYE") %}  
+                        <li><a href="{{ path('bibli_ajouter_livre') }}"> <span class="glyphicon glyphicon-plus"></span>  Ajouter un livre</a></li>
+                        <li><a href="{{ path('bibli_consulter_liste_messages') }}"> 
+                                <div id="messageNonLus"><span class="glyphicon glyphicon-envelope"></span> Messages </div>
+                            </a>
+                       </li>
+                                  
+                                </span></a></li>
+                        
+                        <script type="text/javascript">
+                             $.ajax({
+				type: "GET",
+				url: "{{ path('bibli_calcul_nombre_message') }}",		
+				success: function(nomnbreMessageNonLus){          
+					if(nomnbreMessageNonLus >0){
+                                            document.getElementById("messageNonLus").innerHTML +=  "<span class='label label-primary' >"+nomnbreMessageNonLus;
+                                        }
+				},
+				error: function(){
+                                    alert("Erreur de recuperation des messages non lus");
+				}
+                            });  
+                        </script>                        
+               
+                        {% endif %}
                     {% endif %}
                   </ul>
                   <ul class="nav navbar-nav navbar-right">

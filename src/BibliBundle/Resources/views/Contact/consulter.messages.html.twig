@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+<div id="recherche" class="input-group">
+    <span class="input-group-addon">Rechercher un message </span>
+    <input id="filter" type="text" class="form-control" placeholder="Taper ici...">
+</div>
+  
+<div id="tableUser">
+    <span class="counter pull-right"></span>
+    <br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nom de l'auteur</th>
+                <th>Sujet</th>
+                <th>Email</th>
+            </tr>
+	</thead>
+        <tbody class="searchable">
+            {% for message in messages|reverse %}                 
+                {% if message.isRead == false %}         
+                    <tr onclick="document.location ='{{ path('bibli_consulter_un_seul_message', {'idMessage': message.id}) }}';" >
+                        <td><b>{{message.authorname}}</b></td>
+                        <td><b>{{message.subject}}</b></td>
+                        <td><b>{{message.email}}</b></td> 
+                    </tr>               
+                {% else %}
+                    <tr onclick="document.location ='{{ path('bibli_consulter_un_seul_message', {'idMessage': message.id}) }}';" >
+                        <td>{{message.authorname}}</td>
+                        <td>{{message.subject}}</td>
+                        <td>{{message.email}}</td> 
+                    </tr>                    
+                {% endif %}
+            {% endfor %}
+	</tbody>
+    </table>
+</div>
+
+ {% endblock%}
