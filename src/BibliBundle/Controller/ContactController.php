@@ -15,10 +15,10 @@ class ContactController extends Controller
         $codeErreur=null;
         if (isset($_POST['action'])){
             
-            $name=mysql_real_escape_string($_POST['name']);
-            $subject=mysql_real_escape_string($_POST['subject']);
-            $messagebody=mysql_real_escape_string($_POST['message']);
-            $email=mysql_real_escape_string($_POST['email']);
+            $name=($_POST['name']);
+            $subject=($_POST['subject']);
+            $messagebody=($_POST['message']);
+            $email=($_POST['email']);
             
             $message= new Message();
             $message->setAuthorname($name);
@@ -88,8 +88,19 @@ class ContactController extends Controller
             } 
         }
         
-        //echo json_encode($$nombreMessage);
-        
         return new Response($nombreMessage);
+    }
+    
+    
+    public function supprimerMessageAction($idMessage){
+        
+     
+        $message=$this->getDoctrine()->getRepository('BibliBundle:Message')->findOneBy(array('id' => $idMessage));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($message);
+        $em->flush();
+        
+       return $this->redirect($this->generateUrl('bibli_consulter_liste_messages'));
+        
     }
 }

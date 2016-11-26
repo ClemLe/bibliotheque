@@ -31,13 +31,14 @@
                          <div class="form-group">
                             <label for="resume">
                                Message</label>
-                             <textarea class="form-control" id="resume" name="resume" readonly="true">{{message.message|raw}}</textarea>
+                             <textarea class="form-control" id="resume" rows="6" name="resume" readonly="true">{{message.message|raw}}</textarea>
                         </div>
                  
-                        <button type="submit" name='action'class="btn btn-lg btn-danger btn-block" id="btnContactUs">Supprimer le message</button> 
-                       
+                         <p><a href="{{ path('bibli_supprimer_un_seul_message', {'idMessage': message.id}) }}" class="btn btn-lg btn-danger btn-block">Supprimer le message</a></p>                       
                         
        </div>
+                         
 
    
 {% endblock %}
+

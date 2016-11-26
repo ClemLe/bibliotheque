@@ -2246,12 +2246,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-            "reference": "dc8e624a6776d69850213df4de59f7c4afc72d00"
+            "reference": "c62c727dc7a387edc16df32d2ee4181e620ad35f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/dc8e624a6776d69850213df4de59f7c4afc72d00",
-            "reference": "dc8e624a6776d69850213df4de59f7c4afc72d00",
+            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/c62c727dc7a387edc16df32d2ee4181e620ad35f",
+            "reference": "c62c727dc7a387edc16df32d2ee4181e620ad35f",
             "shasum": ""
         },
         "require": {
@@ -2272,20 +2272,16 @@
             "symfony/console": "^2.7 || ^3.0",
             "symfony/phpunit-bridge": "^2.7 || ^3.0",
             "symfony/validator": "^2.7 || ^3.0",
-            "symfony/yaml": "^2.7 || ^3.0",
-            "willdurand/propel-typehintable-behavior": "^1.0"
+            "symfony/yaml": "^2.7 || ^3.0"
         },
-        "suggest": {
-            "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
-        },
-        "time": "2016-11-10 13:28:14",
+        "time": "2016-11-22 12:21:39",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {
                 "dev-master": "2.0.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "FOS\\UserBundle\\": ""

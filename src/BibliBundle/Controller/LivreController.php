@@ -32,4 +32,8 @@ class LivreController extends Controller
           'codeErreur' => $codeErreur,
         ));
     }
+    
+    public function rechercheLivreAction(){
+        return $this->render('BibliBundle:Livre:recherche.livre.html.twig');
+    }
 }

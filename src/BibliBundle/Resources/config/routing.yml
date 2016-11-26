@@ -10,7 +10,11 @@ bibli_contact_home:
 bibli_consulter_liste_messages:
     path:     /employe/consulter-message
     defaults: { _controller: BibliBundle:Contact:consulterMessage }
-    
+
+bibli_supprimer_un_seul_message:
+    path:     /employe/supprimer-message/{idMessage}
+    defaults: { _controller: BibliBundle:Contact:supprimerMessage }
+ 
 bibli_consulter_un_seul_message:
     path:     /employe/consulter-message/{idMessage}
     defaults: { _controller: BibliBundle:Contact:consulterUnMessage }
@@ -24,3 +28,7 @@ bibli_calcul_nombre_message:
 bibli_ajouter_livre:
     path:     /employe/ajouter-livre
     defaults: { _controller: BibliBundle:Livre:ajouter }
+bibli_rechercher_livre:
+    path:     /rechercher-livre
+    defaults: { _controller: BibliBundle:Livre:rechercheLivre }
+

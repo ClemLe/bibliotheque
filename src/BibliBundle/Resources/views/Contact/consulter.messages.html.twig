@@ -15,22 +15,22 @@
             <tr>
                 <th>Nom de l'auteur</th>
                 <th>Sujet</th>
-                <th>Email</th>
+                <th>Message</th>
             </tr>
 	</thead>
         <tbody class="searchable">
             {% for message in messages|reverse %}                 
                 {% if message.isRead == false %}         
-                    <tr onclick="document.location ='{{ path('bibli_consulter_un_seul_message', {'idMessage': message.id}) }}';" >
+                    <tr onclick="document.location ='{{ path('bibli_consulter_un_seul_message', {'idMessage': message.id}) }}';" style="cursor: pointer;" >
                         <td><b>{{message.authorname}}</b></td>
                         <td><b>{{message.subject}}</b></td>
-                        <td><b>{{message.email}}</b></td> 
+                        <td><b>{{message.message|slice(0, 40)}} ...</b></td> 
                     </tr>               
                 {% else %}
-                    <tr onclick="document.location ='{{ path('bibli_consulter_un_seul_message', {'idMessage': message.id}) }}';" >
+                    <tr onclick="document.location ='{{ path('bibli_consulter_un_seul_message', {'idMessage': message.id}) }}';" style="cursor: pointer;" >
                         <td>{{message.authorname}}</td>
                         <td>{{message.subject}}</td>
-                        <td>{{message.email}}</td> 
+                        <td>{{message.message|slice(0, 40)}} ...</td> 
                     </tr>                    
                 {% endif %}
             {% endfor %}
@@ -39,3 +39,30 @@
 </div>
 
  {% endblock%}
+ 
+ 
+ 
+{% block javascripts %}
+      
+        <script type="text/javascript">
+                 
+         $(document).ready(function () {
+
+            (function ($) {
+
+        $('#filter').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
+});       
+        </script>     
+      
+{% endblock %}

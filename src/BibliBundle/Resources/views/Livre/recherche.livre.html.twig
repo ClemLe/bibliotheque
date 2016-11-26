@@ -1,0 +1,121 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <h3 class="form-signin-heading">Vous pouvez utiliser les filtres pour rechercher un livre !</h3>
+        <div class="panel panel-primary filterable">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Date de parution</th>
+                        <th>Résumé</th>
+                        <th>Réserver</th>
+                    </tr>
+                    <tr class="filters">
+                        <th></th>
+                        <th><input type="text" class="form-control" placeholder="Filtrer par titre" ></th>
+                        <th><input type="text" class="form-control" placeholder="Filtrer par auteur" ></th>
+                        <th><input type="text" class="form-control" placeholder="Filtrer par date" ></th>
+                        <th><input type="text" class="form-control" placeholder="Filtrer par résumé" ></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        
+                       
+                        <td> 
+            <img src="{{ asset('candide.jpg') }}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:40% />
+</td>
+                         <td>Candide</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td><button type="button" class="btn btn-success">Réserver</button></td>
+                    </tr>
+                    <tr>
+                        
+                       <td> 
+     <img src="{{ asset('miserable.jpg') }}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:40% />
+</td>
+                        <td>Lffff</td>
+                    
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td><button type="button" class="btn btn-success">Réserver</button></td>
+                    </tr>
+                    <tr>
+                    
+                       <td> 
+    <img src="{{ asset('candide.jpg') }}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:40% />
+</td>
+                        <td>Lffgggff</td>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td><button type="button" class="btn btn-success">Réserver</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+   
+ 
+ {% endblock%}
+ 
+ 
+ {% block javascripts %}
+      
+        <script type="text/javascript">
+            
+ $(document).ready(function(){
+    $('.filterable .btn-filter').click(function(){
+        var $panel = $(this).parents('.filterable'),
+        $filters = $panel.find('.filters input'),
+        $tbody = $panel.find('.table tbody');
+        if ($filters.prop('disabled') == true) {
+            $filters.prop('disabled', false);
+            $filters.first().focus();
+        } else {
+            $filters.val('').prop('disabled', true);
+            $tbody.find('.no-result').remove();
+            $tbody.find('tr').show();
+        }
+    });
+
+    $('.filterable .filters input').keyup(function(e){
+        /* Ignore tab key */
+        var code = e.keyCode || e.which;
+        if (code == '9') return;
+        /* Useful DOM data and selectors */
+        var $input = $(this),
+        inputContent = $input.val().toLowerCase(),
+        $panel = $input.parents('.filterable'),
+        column = $panel.find('.filters th').index($input.parents('th')),
+        $table = $panel.find('.table'),
+        $rows = $table.find('tbody tr');
+        /* Dirtiest filter function ever ;) */
+        var $filteredRows = $rows.filter(function(){
+            var value = $(this).find('td').eq(column).text().toLowerCase();
+            return value.indexOf(inputContent) === -1;
+        });
+        /* Clean previous no-result if exist */
+        $table.find('tbody .no-result').remove();
+        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+        $rows.show();
+        $filteredRows.hide();
+        /* Prepend no-result row if all rows are filtered */
+        if ($filteredRows.length === $rows.length) {
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'"><b>Aucun livre trouvé avec ce(s) filtre(s) ! </b></td></tr>'));
+        }
+    });
+});
+</script>     
+
+ {% endblock %}
