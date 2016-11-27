@@ -16,15 +16,19 @@ class LivreController extends Controller
         
         $livre= new Livre();
         $form = $this->createFormBuilder($livre)
+                ->add('titre')
+                ->add('auteur')
+                ->add('resume')
                 ->add('file')
    
                 ->getForm()
         ;
         $form->handleRequest($request);
-       
-        
-       
+      
             if ($form->isValid()) {
+        
+
+            
                 $em = $this->getDoctrine()->getManager();
                 $livre->uploadProfilePicture();   
                 $em->persist($livre);
