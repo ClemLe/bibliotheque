@@ -22,7 +22,6 @@ class LivreController extends Controller
         ;
         $form->handleRequest($request);
        
-            
         if ($request->getMethod() === 'POST') {
             $form->bind($this->getRequest());
             if ($form->isValid()) {
