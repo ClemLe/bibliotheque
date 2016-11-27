@@ -16,31 +16,13 @@
        <div class="wrapper">
        
                 <form class="form-horizontal" action="{{ path('bibli_ajouter_livre') }}" method="post">
-           
-                    
-                        <h3 class="form-signin-heading">Remplir le formulaire pour ajouter un livre !</h3>
-                        <div class="form-group">
-                            <label for="titre">
-                               Titre</label>
-                            <input type="text" class="form-control" id="titre" name="titre" placeholder="Entrer le titre du livre" required="required" />
-                        </div>
+                       
+                        <form action="#" method="post" {{ form_enctype(form) }}>
+                            {{ form_widget(form) }}
+                        </form>
                         
-                         <div class="form-group">
-                            <label for="auteur">
-                               Auteur</label>
-                            <input type="text" class="form-control" id="auteur" name="auteur" placeholder="Entrer l'auteur du livre" required="required" />
-                        </div>
-                        
-                         <div class="form-group">
-                            <label for="resume">
-                               Résumé</label>
-                            <input type="text" class="form-control" id="resume" name="resume" placeholder="Entrer le resumé du livre" required="required" />
-                        </div>
-                 
                         <button type="submit" name='action'class="btn btn-lg btn-primary btn-block" id="btnContactUs">Ajouter le livre</button>
                
-                
-             
                 </form>
        </div>
 
