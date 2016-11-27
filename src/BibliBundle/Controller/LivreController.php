@@ -35,7 +35,6 @@ class LivreController extends Controller
             }
         }
         
-        
         return $this->render('BibliBundle:AjouterLivre:index.html.twig',array(
           'codeErreur' => $codeErreur,
           'form' => $form->createView()
