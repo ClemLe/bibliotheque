@@ -42,13 +42,6 @@ class Livre
      * @ORM\Column(name="resume", type="text")
      */
     private $resume;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="couverture", type="string", length=255, nullable=true)
-     */
-    private $couverture;
     
     
     /**
@@ -159,29 +152,6 @@ class Livre
     }
 
     /**
-     * Set couverture
-     *
-     * @param string $couverture
-     * @return Livre
-     */
-    public function setCouverture($couverture)
-    {
-        $this->couverture = $couverture;
-
-        return $this;
-    }
-
-    /**
-     * Get couverture
-     *
-     * @return string 
-     */
-    public function getCouverture()
-    {
-        return $this->couverture;
-    }
-
-    /**
      * Set dateEmprunt
      *
      * @param \DateTime $dateEmprunt
@@ -278,29 +248,29 @@ class Livre
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $pictureName;
+    public $couverture;
 
         /**
-     * Set pictureName
+     * Set couverture
      *
-     * @param string $pictureName
+     * @param string $couverture
      * @return Livre
      */
-    public function setPictureName($pictureName)
+    public function setCouvertureName($couverture)
     {
-        $this->pictureName = $pictureName;
+        $this->couverture = $couverture;
 
         return $this;
     }
 
     /**
-     * Get pictureName
+     * Get couverture
      *
      * @return string 
      */
-    public function getPictureName()
+    public function getCouvertureName()
     {
-        return $this->pictureName;
+        return $this->couverture;
     }
     
     /**
@@ -310,7 +280,7 @@ class Livre
    
     public function getWebPath()
     {
-        return null === $this->pictureName ? null : $this->getUploadDir().'/'.$this->pictureName;
+        return null === $this->couverture ? null : $this->getUploadDir().'/'.$this->couverture;
     }
 
     protected function getUploadRootDir()
@@ -334,9 +304,32 @@ class Livre
         $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
 
         // On sauvegarde le nom de fichier
-        $this->pictureName = $this->file->getClientOriginalName();
+        $this->couverture = $this->file->getClientOriginalName();
        
         // La propriété file ne servira plus
         $this->file = null;
+    }
+
+    /**
+     * Set couverture
+     *
+     * @param string $couverture
+     * @return Livre
+     */
+    public function setCouverture($couverture)
+    {
+        $this->couverture = $couverture;
+
+        return $this;
+    }
+
+    /**
+     * Get couverture
+     *
+     * @return string 
+     */
+    public function getCouverture()
+    {
+        return $this->couverture;
     }
 }

@@ -3,3 +3,4 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /app/config/parameters.yml
+/vendor/

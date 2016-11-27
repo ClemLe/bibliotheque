@@ -12,7 +12,7 @@ class LivreController extends Controller
 {
     public function ajouterAction (Request $request){   
         
-        $codeErreur=null;
+        $codeErreur=0;
         
         $livre= new Livre();
         $form = $this->createFormBuilder($livre)
@@ -20,15 +20,13 @@ class LivreController extends Controller
                 ->add('auteur')
                 ->add('resume')
                 ->add('file')
-   
+                
                 ->getForm()
         ;
         $form->handleRequest($request);
       
             if ($form->isValid()) {
         
-
-            
                 $em = $this->getDoctrine()->getManager();
                 $livre->uploadProfilePicture();   
                 $em->persist($livre);
