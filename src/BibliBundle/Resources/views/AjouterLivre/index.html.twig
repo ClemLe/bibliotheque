@@ -15,15 +15,15 @@
         {% endif %} 
        <div class="wrapper">
        
-                <form class="form-horizontal" action="{{ path('bibli_ajouter_livre') }}" method="post">
+              
                        
-                        <form action="#" method="post" {{ form_enctype(form) }}>
+                      {{ form_start(form) }}
+    		{{ form_errors(form) }}
                             {{ form_widget(form) }}
-                        </form>
+                      
                         
                         <button type="submit" name='action'class="btn btn-lg btn-primary btn-block" id="btnContactUs">Ajouter le livre</button>
-               
-                </form>
+               {{ form_end(form) }}
        </div>
 
    

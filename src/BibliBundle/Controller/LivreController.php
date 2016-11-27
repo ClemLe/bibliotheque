@@ -22,8 +22,8 @@ class LivreController extends Controller
         ;
         $form->handleRequest($request);
        
-        if ($request->getMethod() === 'POST') {
-            $form->bind($this->getRequest());
+        
+       
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $livre->uploadProfilePicture();   
@@ -32,7 +32,7 @@ class LivreController extends Controller
                     
                 $codeErreur = 1;
             }
-        }
+    
         
         return $this->render('BibliBundle:AjouterLivre:index.html.twig',array(
           'codeErreur' => $codeErreur,
