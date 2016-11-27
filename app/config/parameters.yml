@@ -1,9 +1,10 @@
+# This file is auto-generated during the composer install
 parameters:
-    database_host: localhost
+    database_host: 213.32.66.133
     database_port: 3306
     database_name: bibliotheque
     database_user: root
-    database_password: 
+    database_password: projetWeb
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
