@@ -316,13 +316,13 @@ class Livre
     protected function getUploadRootDir()
     {
         // le chemin absolu du répertoire dans lequel sauvegarder les photos de profil
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../bibliotheque/web/'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/pictures';
+        return 'uploads/couvertures';
     }
    
     public function uploadProfilePicture()
