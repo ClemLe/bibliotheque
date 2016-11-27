@@ -26,7 +26,7 @@ bibli_calcul_nombre_message:
         _method: GET
     
 bibli_ajouter_livre:
-    path:     /ajouter-livre
+    path:     /employe/ajouter-livre
     defaults: { _controller: BibliBundle:Livre:ajouter }
     
 bibli_rechercher_livre:
