@@ -274,7 +274,8 @@ class Livre
     }
     
     /**
-     * @Assert\File(maxSize="500k")
+     * @Assert\File(maxSize="5000k")
+     * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
      */
     public $file;
    
