@@ -45,6 +45,14 @@ class LivreController extends Controller
     
     
     public function rechercheLivreAction(){
-        return $this->render('BibliBundle:Livre:recherche.livre.html.twig');
+        
+        $livres = $this->getDoctrine()
+        ->getRepository('BibliBundle:Livres')
+        ->findAll();
+        
+        
+        return $this->render('BibliBundle:Livre:recherche.livre.html.twig',array(
+          'livres' => $livres,
+        ));
     }
 }
