@@ -246,7 +246,7 @@ class Livre
     //AJOUT
     
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     public $couverture;
 
@@ -274,7 +274,7 @@ class Livre
     }
     
     /**
-     * @Assert\File(maxSize="5000k")
+     * @Assert\File(maxSize="1000k")
      * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
      */
     public $file;
@@ -332,5 +332,28 @@ class Livre
     public function getCouverture()
     {
         return $this->couverture;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     * @return Livre
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
     }
 }
