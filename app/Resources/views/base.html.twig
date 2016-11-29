@@ -1,104 +1,118 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="UTF-8" />
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
-      <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-      
+    <head>
       <title>{% block title %}Accueil{% endblock %}</title>
-      
-      {% block stylesheets %}{% endblock %}
-      
-      <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-   </head>
-   <body>
-       <div id="menu">
-      <div class="container-fixed">
-         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="{{ path('bibli_homepage') }}"><span class="glyphicon glyphicon-home"></span>   Bibliotheque</a>
-               </div> 
-               <div class="collapse navbar-collapse">
-                  <ul class="nav navbar-nav">
-                     <li><a href="{{ path('bibli_contact_home') }}"> <span class="glyphicon glyphicon-envelope"></span>  Nous contacter</a></li>
-                     
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <li><a href="{{ path('bibli_rechercher_livre') }}"> <span class="glyphicon glyphicon-search"></span>  Rechercher un livre</a></li>
-                        <li><a href="#"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>
-                        
-                        {% if is_granted("ROLE_EMPLOYE") %}  
-                        <li><a href="{{ path('bibli_ajouter_livre') }}"> <span class="glyphicon glyphicon-plus"></span>  Ajouter un livre</a></li>
-                        <li><a href="{{ path('bibli_consulter_liste_messages') }}"> 
-                                <div id="messageNonLus"><span class="glyphicon glyphicon-envelope"></span> Messages </div>
-                            </a>
-                       </li>
-                                  
-                                </span></a></li>
-                        
-                        <script type="text/javascript">
-                             $.ajax({
-				type: "GET",
-				url: "{{ path('bibli_calcul_nombre_message') }}",		
-				success: function(nomnbreMessageNonLus){          
-					if(nomnbreMessageNonLus >0){
-                                            document.getElementById("messageNonLus").innerHTML +=  "<span class='label label-primary' >"+nomnbreMessageNonLus;
-                                        }
-				},
-				error: function(){
-                                    alert("Erreur de recuperation des messages non lus");
-				}
-                            });  
-                        </script>                        
-               
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
+       <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    </head>
+    <body>
+
+        <div id="menu">
+          <div class="container-fixed">
+             <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                   <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="{{ path('bibli_homepage') }}"><span class="glyphicon glyphicon-home"></span>   Bibliotheque</a>
+                   </div> 
+                   <div class="collapse navbar-collapse">
+                      <ul class="nav navbar-nav">
+                         <li><a href="{{ path('bibli_contact_home') }}"> <span class="glyphicon glyphicon-envelope"></span>  Nous contacter</a></li>
+
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li><a href="{{ path('bibli_rechercher_livre') }}"> <span class="glyphicon glyphicon-search"></span>  Rechercher un livre</a></li>
+                            <li><a href="#"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>
+
+                            {% if is_granted("ROLE_EMPLOYE") %}  
+                            <li><a href="{{ path('bibli_ajouter_livre') }}"> <span class="glyphicon glyphicon-plus"></span>  Ajouter un livre</a></li>
+                            <li><a href="{{ path('bibli_consulter_liste_messages') }}"> 
+                                    <div id="messageNonLus"><span class="glyphicon glyphicon-envelope"></span> Messages </div>
+                                </a>
+                           </li>
+
+                                    </span></a></li>
+
+                            <script type="text/javascript">
+                                 $.ajax({
+                                    type: "GET",
+                                    url: "{{ path('bibli_calcul_nombre_message') }}",		
+                                    success: function(nomnbreMessageNonLus){          
+                                            if(nomnbreMessageNonLus >0){
+                                                document.getElementById("messageNonLus").innerHTML +=  "<span class='label label-primary' >"+nomnbreMessageNonLus;
+                                            }
+                                    },
+                                    error: function(){
+                                        alert("Erreur de recuperation des messages non lus");
+                                    }
+                                });  
+                            </script>                        
+
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                  </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                          
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{  app.user.username  }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">       
-                                <li><a href="" > <span class="glyphicon glyphicon-cog"></span> Modifier son mot de passe </a></li>
-                                <li><a href="" > <span class="glyphicon glyphicon-cog"></span> Modifier son adresse mail</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{ path('fos_user_security_logout') }}" > <span class="glyphicon glyphicon-off"></span> Déconnexion </a></li>              
-                            </ul>
-                        </li>
-                       {% else %}
-                      <li> <a href="{{ path('fos_user_security_login') }}" > <span class="glyphicon glyphicon-log-in"></span> Se connecter </a></li>
-                      <li> <a href="{{ path('fos_user_registration_register') }}" > <span class="glyphicon glyphicon-edit"></span> Créer un compte </a></li>
-                      {% endif %}
-                  </ul>
-               </div>
-               <!--/.nav-collapse -->
-            </div>
-         </div>
-      </div>
-       
-   </div>
-       
-      <div class="container">
-        {% block body %}{% endblock %} 
-      </div>
-      {% block javascripts %}{% endblock %}
-     
-        <div id="footer" class="container">
-          <nav class="navbar navbar-default navbar-fixed-bottom">
-              <div class="navbar-inner navbar-content-center">
-                  <p class="text-muted credit"> <span class="glyphicon glyphicon-copyright-mark"></span>  Bibliotheque - Tous droits réservés - 2016. </p>
-              </div>
-          </nav>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right">
+                          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{  app.user.username  }} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">       
+                                    <li><a href="" > <span class="glyphicon glyphicon-cog"></span> Modifier son mot de passe </a></li>
+                                    <li><a href="" > <span class="glyphicon glyphicon-cog"></span> Modifier son adresse mail</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}" > <span class="glyphicon glyphicon-off"></span> Déconnexion </a></li>              
+                                </ul>
+                            </li>
+                           {% else %}
+                          <li> <a href="{{ path('fos_user_security_login') }}" > <span class="glyphicon glyphicon-log-in"></span> Se connecter </a></li>
+                          <li> <a href="{{ path('fos_user_registration_register') }}" > <span class="glyphicon glyphicon-edit"></span> Créer un compte </a></li>
+                          {% endif %}
+                      </ul>
+                   </div>
+                   <!--/.nav-collapse -->
+                </div>
+             </div>
+          </div>
         </div>
-      
-    </body>
+
+
+        <div class="container" id="content">    
+
+            {% block body %}
+                <h1>Welcome</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <hr>
+                <h3>Test</h3>
+                <p>Lorem ipsum...</p>
+
+                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />content1
+                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />content2
+                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />Si ce texte s'affiche, c'est que la scroll bar fonctionne !
+            {% endblock %} 
+
+        </div>
+
+        {% block javascripts %}{% endblock %}
+
+
+         <div id="footer" class="container">
+            <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="navbar-inner navbar-content-center">
+                    <p class="text-muted credit"> <span class="glyphicon glyphicon-copyright-mark"></span>  Bibliotheque - Tous droits réservés - 2016. </p>
+                </div>
+            </nav>
+        </div>
+   </body>
 </html>
