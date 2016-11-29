@@ -19,7 +19,7 @@ class LivreController extends Controller
                 ->add('titre')
                 ->add('auteur')
                 ->add('resume')
-                ->add('file')
+                ->add('file', 'file', array('required' => true))
                 
                 ->getForm()
         ;
