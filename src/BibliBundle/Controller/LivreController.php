@@ -47,7 +47,7 @@ class LivreController extends Controller
     public function rechercheLivreAction(){
         
         $livres = $this->getDoctrine()
-        ->getRepository('BibliBundle:Livres')
+        ->getRepository('BibliBundle:Livre')
         ->findAll();
         
         

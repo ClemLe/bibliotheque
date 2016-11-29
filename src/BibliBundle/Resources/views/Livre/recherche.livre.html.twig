@@ -13,7 +13,7 @@
                         <th>Titre</th>
                         <th>Auteur</th>
                         <th>Date de parution</th>
-                        <th>Résumé</th>
+                      
                         <th>Réserver</th>
                     </tr>
                     <tr class="filters">
@@ -21,52 +21,26 @@
                         <th><input type="text" class="form-control" placeholder="Filtrer par titre" ></th>
                         <th><input type="text" class="form-control" placeholder="Filtrer par auteur" ></th>
                         <th><input type="text" class="form-control" placeholder="Filtrer par date" ></th>
-                        <th><input type="text" class="form-control" placeholder="Filtrer par résumé" ></th>
+                        
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                     {% for livre in livres %}    
                     <tr>
-                        
+                         <td> 
+                            <img src="{{asset('uploads/couvertures/'~ livre.couverture)}}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:30% />
+                        </td>
+                        <td>{{livre.titre}}  </td>
+                        <td>{{livre.auteur}}</td>
+                        <td> 01/01/01</td>
                        
-                        <td> 
-            <img src="{{ asset('candide.jpg') }}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:40% />
-</td>
-                         <td>Candide</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
                         <td><button type="button" class="btn btn-success">Réserver</button></td>
                     </tr>
-                    <tr>
+                    
+                     {% endfor %}   
                         
-                       <td> 
-     <img src="{{ asset('miserable.jpg') }}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:40% />
-</td>
-                        <td>Lffff</td>
-                    
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td><button type="button" class="btn btn-success">Réserver</button></td>
-                    </tr>
-                    <tr>
-                    
-                       <td> 
-    <img src="{{ asset('candide.jpg') }}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:40% />
-</td>
-                        <td>Lffgggff</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td><button type="button" class="btn btn-success">Réserver</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-   
- 
+                  
  {% endblock%}
  
  
