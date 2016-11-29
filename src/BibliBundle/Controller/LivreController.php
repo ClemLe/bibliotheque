@@ -18,6 +18,7 @@ class LivreController extends Controller
         $form = $this->createFormBuilder($livre)
                 ->add('titre')
                 ->add('auteur')
+                ->add('dateParution')
                 ->add('resume')
                 ->add('file', 'file', array('required' => true))
                  
@@ -41,6 +42,7 @@ class LivreController extends Controller
                 $form = $this->createFormBuilder($livre)
                     ->add('titre')
                     ->add('auteur')
+                    ->add('dateParution')
                     ->add('resume')
                     ->add('file', 'file', array('required' => true))
 

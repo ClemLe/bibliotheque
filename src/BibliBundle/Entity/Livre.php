@@ -71,6 +71,12 @@ class Livre
      */
     private $dateRetour;
 
+    /**
+     * @var \Year
+     *
+     * @ORM\Column(name="dateParution", columnDefinition="year", nullable=false)
+     */
+    private $dateParution;
 
     /**
      * Get id
@@ -355,5 +361,28 @@ class Livre
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Set dateParution
+     *
+     * @param \DateTime $dateParution
+     * @return Livre
+     */
+    public function setDateParution($dateParution)
+    {
+        $this->dateParution = $dateParution;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateParution
+     *
+     * @return \DateTime 
+     */
+    public function getDateParution()
+    {
+        return $this->dateParution;
     }
 }
