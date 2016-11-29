@@ -33,6 +33,20 @@ class LivreController extends Controller
                 $em->flush();
                     
                 $codeErreur = 1;
+                
+                unset($titre);
+                unset($form);
+  
+                $livre= new Livre();
+                $form = $this->createFormBuilder($livre)
+                    ->add('titre')
+                    ->add('auteur')
+                    ->add('resume')
+                    ->add('file', 'file', array('required' => true))
+
+                    ->getForm()
+                ;
+                
             }
     
         
