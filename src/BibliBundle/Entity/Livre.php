@@ -72,9 +72,9 @@ class Livre
     private $dateRetour;
 
     /**
-     * @var \Year
+     * @var \DateTime
      *
-     * @ORM\Column(name="dateParution", columnDefinition="year", nullable=false)
+     * @ORM\Column(name="dateParution", columnDefinition="datetime", nullable=false)
      */
     private $dateParution;
 
