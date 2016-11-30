@@ -18,7 +18,13 @@ class LivreController extends Controller
         $form = $this->createFormBuilder($livre)
                 ->add('titre')
                 ->add('auteur')
-                ->add('dateParution')
+                ->add('dateParution', 'date', array(
+                    'widget' => 'choice',
+                    'input' => 'datetime',
+                    'format' => 'yyyy/MM/dd',
+                    'years' => range(date('Y'), date('Y') -200),
+                    'attr' => array('class' => 'date'),
+                ))
                 ->add('resume')
                 ->add('file', 'file', array('required' => true))
                  
