@@ -5,6 +5,7 @@ namespace BibliBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BibliBundle\Entity\Livre;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 //ajout
 use BibliBundle\Form\IdentityPictureType;
 
@@ -76,5 +77,26 @@ class LivreController extends Controller
         return $this->render('BibliBundle:Livre:recherche.livre.html.twig',array(
           'livres' => $livres,
         ));
+    }
+    
+    
+    public function autocompletionAuteurAction(){
+        
+        $term = $_GET['term'];
+    
+        $livres = $this->getDoctrine()->getRepository('BibliBundle:Livre')->createQueryBuilder('l')
+            ->where('l.auteur LIKE :auteur')
+            ->setParameter('auteur', $term.'%')
+            ->getQuery()
+            ->getResult();
+        
+        $arrayNomAuteur= array();
+        
+        foreach ($livres as $livre){
+            array_push($arrayNomAuteur, $livre->getAuteur());
+        }
+         
+        return new Response(json_encode($arrayNomAuteur));
+        
     }
 }

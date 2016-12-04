@@ -15,6 +15,7 @@
         {% endif %} 
         
         <div class="wrapper">
+            
                     
         {{ form_start(form) }}
             {{ form_errors(form) }}
@@ -28,4 +29,17 @@
 
    
  
+ {% endblock%}
+ 
+ {% block javascripts %}
+     
+     <script type="text/javascript">
+        $(function () {
+            $('#form_auteur').autocomplete({
+                source : "{{ path('bibli_ajouter_livre_autocompletion_auteur') }}"
+            });
+        });
+    </script>
+   
+     
  {% endblock%}
