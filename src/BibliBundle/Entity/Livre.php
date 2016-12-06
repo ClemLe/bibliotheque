@@ -72,9 +72,9 @@ class Livre
     private $dateRetour;
 
     /**
-     * @var \DateTime
+     * @var \Year
      *
-     * @ORM\Column(name="dateParution", columnDefinition="datetime", nullable=false)
+     * @ORM\Column(name="dateParution", columnDefinition="year", nullable=false)
      */
     private $dateParution;
 
@@ -252,7 +252,7 @@ class Livre
     //AJOUT
     
     /**
-     * @ORM\Column(type="datetime", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $couverture;
 
