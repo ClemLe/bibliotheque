@@ -93,4 +93,16 @@ class LivreController extends Controller
         return new Response(json_encode($arrayNomAuteur));
         
     }
+    
+    public function afficherLivreAction($idLivre){
+           
+        $livre=$this->getDoctrine()
+                ->getRepository('BibliBundle:Message')
+                ->findOneBy(array('id' => $idLivre));
+        
+        return $this->render('BibliBundle:Livre:afficher.un.livre.html.twig',array(
+          'livre' => $livre,
+        ));
+   
+    }
 }

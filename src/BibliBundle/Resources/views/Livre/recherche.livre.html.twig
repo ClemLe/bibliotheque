@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                      {% for livre in livres %}    
-                    <tr style="cursor: pointer;">
+                    <tr onclick="document.location ='{{ path('bibli_afficher_un_livre', {'idLivre': livre.id}) }}';"style="cursor: pointer;">
                          <td> 
                             <img src="{{asset('uploads/couvertures/'~ livre.couverture)}}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:30% />
                         </td>

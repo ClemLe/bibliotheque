@@ -37,3 +37,6 @@ bibli_rechercher_livre:
     path:     /rechercher-livre
     defaults: { _controller: BibliBundle:Livre:rechercheLivre }
 
+bibli_afficher_un_livre:
+    path:     /afficher-livre/{idLivre}
+    defaults: { _controller: BibliBundle:Livre:afficherLivre }
