@@ -77,6 +77,14 @@ class Livre
      * @ORM\Column(name="dateParution", columnDefinition="year", nullable=false)
      */
     private $dateParution;
+    
+    
+     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estEmprunte", type="boolean")
+     */
+    private $estEmprunte;
 
     /**
      * Get id
@@ -384,5 +392,28 @@ class Livre
     public function getDateParution()
     {
         return $this->dateParution;
+    }
+
+    /**
+     * Set estEmprunte
+     *
+     * @param boolean $estEmprunte
+     * @return Livre
+     */
+    public function setEstEmprunte($estEmprunte)
+    {
+        $this->estEmprunte = $estEmprunte;
+
+        return $this;
+    }
+
+    /**
+     * Get estEmprunte
+     *
+     * @return boolean 
+     */
+    public function getEstEmprunte()
+    {
+        return $this->estEmprunte;
     }
 }

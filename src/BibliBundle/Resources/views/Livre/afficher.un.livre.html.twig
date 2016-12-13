@@ -1,2 +1,99 @@
-{# empty Twig template #}
-cc
+{% extends '::base.html.twig' %}
+
+{% block body %}
+ 
+    <div class="wrapper">
+        
+        
+        {% if codeMessageUser == 1 %}
+            
+        <div class="alert alert-success fade in" style="text-align: center;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Bravo!</strong> Vous venez de reserver ce livre !
+        </div>
+        
+       
+        
+        {% elseif livre.estEmprunte == true %}
+            <div class="alert alert-danger fade in" style="text-align: center;">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Attention!</strong> Ce livre est réservé jusqu'au 00/00/00 !
+            </div>
+               
+        {% endif %}
+     
+      <h3 class="form-signin-heading"> {{livre.titre}} </h3>
+        
+       
+        <div class="form-group">
+          
+            <img src="{{asset('uploads/couvertures/'~ livre.couverture)}}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:30% />
+        </div>                     
+      
+        <hr>           
+                        
+        <div class="form-group">     
+            <h3>Auteur</h3>
+            <p>{{livre.auteur}}</p>
+        </div>    
+        
+        <hr>  
+        
+        
+        <div class="form-group">     
+            <h3>Année de parution</h3>
+            <p>{{livre.dateParution}}</p>
+        </div>     
+                  
+   
+        <hr>           
+                        
+        <div class="form-group" align="justify">     
+            <h3>Résumé</h3>
+            <p>{{livre.resume}}</p>
+        </div>
+        
+         <hr> 
+         
+         
+        {% if livre.estEmprunte == false %}
+           
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Réserver ce livre</button>
+                
+           
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Veuillez confirmer la réservation</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">        
+                        <p>Vous êtes sur le point de réserver ce livre :</p>
+                        <p> <strong>Titre :</strong> {{livre.titre}} </p>
+                        <p> <strong>Auteur :</strong> {{livre.auteur}} </p>
+                        <p> Cette réservation à une durée de <strong> 30 jours ! </strong> </p>               
+                    </div>     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                    <a href="{{ path('bibli_reserver_livre', {'idLivre': livre.id}) }}" class="btn btn-success">Confirmer cette réservation !</a>              
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+           
+        {% else %}
+            <button type="button" class="btn btn-danger" disabled="disabled">Réservervation impossible pour le moment</button>
+        {% endif %}
+                               
+
+    </div>
+        
+                        
+                  
+ {% endblock%}

@@ -97,12 +97,42 @@ class LivreController extends Controller
     public function afficherLivreAction($idLivre){
            
         $livre=$this->getDoctrine()
-                ->getRepository('BibliBundle:Message')
+                ->getRepository('BibliBundle:Livre')
                 ->findOneBy(array('id' => $idLivre));
+        
+         $codeMessageUser=null;
         
         return $this->render('BibliBundle:Livre:afficher.un.livre.html.twig',array(
           'livre' => $livre,
+          'codeMessageUser' =>$codeMessageUser
         ));
    
+    }
+    
+    
+    public function reserverLivreAction($idLivre){
+        
+        $livre=$this->getDoctrine()
+                ->getRepository('BibliBundle:Livre')
+                ->findOneBy(array('id' => $idLivre));
+        
+        
+        $user=$this->getUser();
+        
+        $livre->setUserEmprunt($user);
+        $livre->setEstEmprunte(true);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($livre);
+        $em->flush();
+        
+        $codeMessageUser=1;
+        
+         return $this->render('BibliBundle:Livre:afficher.un.livre.html.twig',array(
+          'livre' => $livre,
+          'codeMessageUser' =>$codeMessageUser
+        ));
+        
+        
     }
 }

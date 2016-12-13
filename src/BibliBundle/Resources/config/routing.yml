@@ -40,3 +40,7 @@ bibli_rechercher_livre:
 bibli_afficher_un_livre:
     path:     /afficher-livre/{idLivre}
     defaults: { _controller: BibliBundle:Livre:afficherLivre }
+    
+bibli_reserver_livre:
+    path: /reserver-livre/{idLivre}
+    defaults: { _controller: BibliBundle:Livre:reserverLivre }
