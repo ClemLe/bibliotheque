@@ -40,10 +40,8 @@
     </table>
 </div>
 
- {% endblock%}
- 
- 
- 
+{% endblock%}
+  
 {% block javascripts %}
       
         <script type="text/javascript">
@@ -52,19 +50,19 @@
 
             (function ($) {
 
-        $('#filter').keyup(function () {
+                $('#filter').keyup(function () {
 
-            var rex = new RegExp($(this).val(), 'i');
-            $('.searchable tr').hide();
-            $('.searchable tr').filter(function () {
-                return rex.test($(this).text());
-            }).show();
+                    var rex = new RegExp($(this).val(), 'i');
+                    $('.searchable tr').hide();
+                    $('.searchable tr').filter(function () {
+                        return rex.test($(this).text());
+                    }).show();
+                })
 
-        })
+            }(jQuery));
 
-    }(jQuery));
-
-});       
+        });   
+        
         </script>     
       
 {% endblock %}
