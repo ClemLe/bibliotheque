@@ -28,4 +28,6 @@ security:
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/mon-compte, role:  IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/rechercher-livre, role:  IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/mes-reservations, role:  IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/employe/, role: ROLE_EMPLOYE }

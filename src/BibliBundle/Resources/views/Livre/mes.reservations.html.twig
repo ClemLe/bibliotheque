@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Mes réservations{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <h3 class="form-signin-heading">Voici la liste de mes reservations</h3>
+        
+        
+         {% if livres is empty %}
+                
+             <center><label> Vous n'avez aucune reservation ! </label></center>
+            
+        {% else %}
+                    
+                <div class="panel panel-primary filterable">
+            
+                    <table class="table table-hover" id="rechercheTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Titre</th>
+                                <th>Auteur</th>
+                                <th>Réservé jusqu'au</th>
+                            </tr>             
+                        </thead>
+                        <tbody>    
+                            {% for livre in livres %}  
+                                <tr>
+                                    <td> 
+                                        <img src="{{asset('uploads/couvertures/'~ livre.couverture)}}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:20% />
+                                    </td>
+                                    <td>{{livre.titre}}  </td>
+                                    <td>{{livre.auteur}}</td>
+                                    <td>{{livre.dateRetour|date('d/m/Y')}} </td>
+                                </tr>
+                            {% endfor %}       
+                    </tbody>     
+                   </table>   
+        
+       </div> 
+                    
+     {% endif %}
+   </div>  
+ {% endblock%}

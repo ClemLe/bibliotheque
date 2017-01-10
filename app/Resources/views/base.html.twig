@@ -9,6 +9,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+   
        <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
 
@@ -37,7 +39,7 @@
 
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <li><a href="{{ path('bibli_rechercher_livre') }}"> <span class="glyphicon glyphicon-search"></span>  Rechercher un livre</a></li>
-                            <li><a href="#"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>
+                            <li><a href="{{ path('bibli_afficher_mes_reservations') }}"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>
 
                             {% if is_granted("ROLE_EMPLOYE") %}  
                             <li><a href="{{ path('bibli_ajouter_livre') }}"> <span class="glyphicon glyphicon-plus"></span>  Ajouter un livre</a></li>
@@ -58,7 +60,7 @@
                                             }
                                     },
                                     error: function(){
-                                        alert("Erreur de recuperation des messages non lus");
+                                        console.log("Erreur de recuperation des messages non lus");
                                     }
                                 });  
                             </script>                        
@@ -72,8 +74,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{  app.user.username  }} <span class="caret"></span></a>
                                 <ul class="dropdown-menu">       
-                                    <li><a href="{{path('fos_user_change_password')}}" > <span class="glyphicon glyphicon-cog"></span> Modifier son mot de passe </a></li>
-                                    <li><a href="" > <span class="glyphicon glyphicon-cog"></span> Modifier son adresse mail</a></li>
+                                    <li><a href="{{path('fos_user_change_password')}}" > <span class="glyphicon glyphicon-cog"></span> Modifier son mot de passe </a></li>                        
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{{ path('fos_user_security_logout') }}" > <span class="glyphicon glyphicon-off"></span> Déconnexion </a></li>              
                                 </ul>

@@ -49,14 +49,7 @@ class Livre
         * @ORM\JoinColumn(nullable=true)
     */
     private $user_emprunt;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateEmprunt", type="datetime",nullable=true)
-     */
-    private $dateEmprunt;
-
+    
     /**
      * @var \DateTime
      *
@@ -163,29 +156,6 @@ class Livre
     public function getResume()
     {
         return $this->resume;
-    }
-
-    /**
-     * Set dateEmprunt
-     *
-     * @param \DateTime $dateEmprunt
-     * @return Livre
-     */
-    public function setDateEmprunt($dateEmprunt)
-    {
-        $this->dateEmprunt = $dateEmprunt;
-
-        return $this;
-    }
-
-    /**
-     * Get dateEmprunt
-     *
-     * @return \DateTime 
-     */
-    public function getDateEmprunt()
-    {
-        return $this->dateEmprunt;
     }
 
     /**

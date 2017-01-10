@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BibliBundle\Entity\Livre;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 //ajout
 use BibliBundle\Form\IdentityPictureType;
 
@@ -19,7 +20,7 @@ class LivreController extends Controller
         $form = $this->createFormBuilder($livre)
                 ->add('titre')
                 ->add('auteur')
-                ->add('dateParution')
+                ->add('dateParution', 'text', array('attr' => array('placeholder' => 'Taper ici l\'annee de parution format YYYY')))
                 ->add('resume')
                 ->add('file', 'file', array('required' => true))
                  
@@ -30,33 +31,18 @@ class LivreController extends Controller
             if ($form->isValid()) {
         
                 $em = $this->getDoctrine()->getManager();
-                $livre->uploadProfilePicture();   
+                $livre->uploadProfilePicture();
+                $livre->setEstEmprunte(false);
                 $em->persist($livre);
                 $em->flush();
                     
                 $codeErreur = 1;
-                
-                unset($titre);
-                unset($form);
-  
-                $livre= new Livre();
-                $form = $this->createFormBuilder($livre)
-                    ->add('titre')
-                    ->add('auteur')
-                    ->add('dateParution')
-                    ->add('resume')
-                    ->add('file', 'file', array('required' => true))
-
-                    ->getForm()
-                ;
-                
+     
             }
-    
-        
-        return $this->render('BibliBundle:AjouterLivre:index.html.twig',array(
+        return $this->render('BibliBundle:Livre:ajouter.livre.html.twig',array(
           'codeErreur' => $codeErreur,
           'form' => $form->createView()
-            ));
+        ));
     }
 
     
@@ -120,8 +106,9 @@ class LivreController extends Controller
         $user=$this->getUser();
         
         $livre->setUserEmprunt($user);
+        $livre->setDateReservation(new \DateTime("now"));
+        $livre->setDateRetour(new \DateTime('+30 day'));
         $livre->setEstEmprunte(true);
-        
         $em = $this->getDoctrine()->getManager();
         $em->persist($livre);
         $em->flush();
@@ -134,5 +121,19 @@ class LivreController extends Controller
         ));
         
         
+    }
+    
+    public function mesReservationsAction(){
+        
+        
+        $user=$this->getUser();
+        
+        $livres=$this->getDoctrine()
+                ->getRepository('BibliBundle:Livre')
+                ->findBy(array('user_emprunt' => $user));
+        
+        return $this->render('BibliBundle:Livre:mes.reservations.html.twig',array(
+          'livres' => $livres,
+        ));
     }
 }

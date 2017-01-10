@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}Affichage du livre "{{livre.titre}}" {% endblock %}
+
 {% block body %}
  
     <div class="wrapper">
@@ -17,7 +19,7 @@
         {% elseif livre.estEmprunte == true %}
             <div class="alert alert-danger fade in" style="text-align: center;">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Attention!</strong> Ce livre est réservé jusqu'au 00/00/00 !
+                <strong>Attention!</strong> Ce livre est réservé jusqu'au {{livre.dateRetour|date('d/m/Y')}} !
             </div>
                
         {% endif %}
