@@ -56,7 +56,11 @@
         <hr> 
          
          
-        {% if livre.estEmprunte == false %}
+       {% if nombreReservation >= 3 %}
+         
+            <button type="button" class="btn btn-danger" disabled="disabled">Vous avez déjà 3 réservations !</button>
+         
+        {% elseif livre.estEmprunte == false %}
            
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Réserver ce livre</button>
                

@@ -114,10 +114,22 @@ class LivreController extends Controller
                 ->findOneBy(array('id' => $idLivre));
         
          $codeMessageUser=null;
+         
+        $user=$this->getUser();
+         
+        $livresUser=$this->getDoctrine()
+            ->getRepository('BibliBundle:Livre')
+            ->findBy(array('user_emprunt' => $user));
+       
+        $nombreReservationUser=count($livresUser);
+        if($$nombreReservationUser =''){
+            $nombreReservationUser=0;
+        }
         
         return $this->render('BibliBundle:Livre:afficher.un.livre.html.twig',array(
           'livre' => $livre,
-          'codeMessageUser' =>$codeMessageUser
+          'codeMessageUser' =>$codeMessageUser,
+          'nombreReservation'=>$nombreReservationUser
         ));
    
     }
@@ -146,10 +158,12 @@ class LivreController extends Controller
         $em->flush();
         
         $codeMessageUser=1;
+        $nombreReservationUser=0;
         
          return $this->render('BibliBundle:Livre:afficher.un.livre.html.twig',array(
           'livre' => $livre,
-          'codeMessageUser' =>$codeMessageUser
+          'codeMessageUser' =>$codeMessageUser,
+          'nombreReservation'=>$nombreReservationUser
         ));
         
         
@@ -172,4 +186,22 @@ class LivreController extends Controller
           'livres' => $livres,
         ));
     }
+    
+    public function  annulerReservationAction($idLivre){
+         $livre=$this->getDoctrine()
+                ->getRepository('BibliBundle:Livre')
+                ->findOneBy(array('id' => $idLivre));
+         
+        $livre->setUserEmprunt(null);
+        $livre->setDateReservation(null);
+        $livre->setDateRetour(null);
+        $livre->setEstEmprunte(false);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($livre);
+        $em->flush();
+        
+       
+        return $this->redirectToRoute('bibli_afficher_mes_reservations');
+    }
+    
 }
