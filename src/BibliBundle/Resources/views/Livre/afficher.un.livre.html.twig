@@ -5,8 +5,7 @@
 {% block body %}
  
     <div class="wrapper">
-        
-        
+           
         {% if codeMessageUser == 1 %}
             
         <div class="alert alert-success fade in" style="text-align: center;">
@@ -24,11 +23,10 @@
                
         {% endif %}
      
-      <h3 class="form-signin-heading"> {{livre.titre}} </h3>
+        <h3 class="form-signin-heading"> {{livre.titre}} </h3>
         
        
         <div class="form-group">
-          
             <img src="{{asset('uploads/couvertures/'~ livre.couverture)}}" class="img-responsive voc_list_preview_img" alt="" title="" style=width:30% />
         </div>                     
       
@@ -55,14 +53,13 @@
             <p>{{livre.resume}}</p>
         </div>
         
-         <hr> 
+        <hr> 
          
          
         {% if livre.estEmprunte == false %}
            
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Réserver ce livre</button>
-                
-           
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Réserver ce livre</button>
+               
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -88,14 +85,10 @@
               </div>
             </div>
            
-           
         {% else %}
             <button type="button" class="btn btn-danger" disabled="disabled">Réservervation impossible pour le moment</button>
-        {% endif %}
-                               
+        {% endif %}                     
 
     </div>
-        
-                        
-                  
+                      
  {% endblock%}
