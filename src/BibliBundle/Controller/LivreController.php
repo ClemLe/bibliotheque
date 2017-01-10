@@ -20,7 +20,7 @@ class LivreController extends Controller
         $form = $this->createFormBuilder($livre)
                 ->add('titre')
                 ->add('auteur')
-                ->add('dateParution', 'text', array('attr' => array('placeholder' => 'Taper ici l\'annee de parution format YYYY')))
+                ->add('dateParution', 'text', array('attr' => array('placeholder' => 'Taper ici l\'année de parution format YYYY')))
                 ->add('resume')
                 ->add('file', 'file', array('required' => true))
                  
