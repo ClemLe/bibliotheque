@@ -23,6 +23,7 @@
                                 <th>Titre</th>
                                 <th>Auteur</th>
                                 <th>Réservé jusqu'au</th>
+                                <th>Annuler sa réservation</th>
                             </tr>             
                         </thead>
                         <tbody>    
@@ -33,6 +34,7 @@
                                     </td>
                                     <td>{{livre.titre}}  </td>
                                     <td>{{livre.auteur}}</td>
+                                    <td>{{livre.dateRetour|date('d/m/Y')}} </td>
                                     <td><a class="btn btn-danger" href="{{ path('bibli_annuler_une_reservation', {'idLivre': livre.id}) }}">Annuler la reservation</a> </td>
                                 </tr>
                             {% endfor %}       
