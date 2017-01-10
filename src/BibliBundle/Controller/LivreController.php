@@ -7,11 +7,23 @@ use BibliBundle\Entity\Livre;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
-//ajout
 use BibliBundle\Form\IdentityPictureType;
 
+/**
+ * Classe LivreController
+ * 
+ * Cette classe permet la gestion des livres, leurs ajouts,
+ * leurs affichages ainsi que toutes les fonctionnalités
+ * concernant les livres
+ */
 class LivreController extends Controller
 {
+    /**
+     * Ajouter un livre à l'aide d'un formulaire
+     * 
+     * @param Request $request 
+     * @return type La vue permttant d'ajouter un livre
+     */
     public function ajouterAction (Request $request){   
         
         $codeErreur=0;
@@ -20,7 +32,7 @@ class LivreController extends Controller
         $form = $this->createFormBuilder($livre)
                 ->add('titre')
                 ->add('auteur')
-                ->add('dateParution', 'text', array('attr' => array('placeholder' => 'Taper ici l\'année de parution format YYYY')))
+                ->add('dateParution', 'text', array('attr' => array('placeholder' => 'Taper ici l\'annee de parution format YYYY')))
                 ->add('resume')
                 ->add('file', 'file', array('required' => true))
                  
@@ -46,7 +58,11 @@ class LivreController extends Controller
     }
 
     
-    
+   /**
+     * Affichage de la liste des livres pour permettre une recherche
+     * 
+     * @return type La vue d'affichage des livres
+     */
     public function rechercheLivreAction(){
         
         $livres = $this->getDoctrine()
@@ -59,7 +75,12 @@ class LivreController extends Controller
         ));
     }
     
-    
+    /**
+     * Autocomplétion sur le champ auteur lors de l'ajout d'un livre
+     * 
+     * @return Response la liste des auteurs correspondants aux caractères 
+     * entrés dans le champ auteur par l'utilisateur
+     */
     public function autocompletionAuteurAction(){
         
         $term = $_GET['term'];
@@ -80,6 +101,12 @@ class LivreController extends Controller
         
     }
     
+    /**
+     * Affiche la description d'un livre
+     *
+     * @param type $idLivre L'identifiant du livre à afficher
+     * @return type La vue correspondant au livre désiré
+     */
     public function afficherLivreAction($idLivre){
            
         $livre=$this->getDoctrine()
@@ -95,7 +122,12 @@ class LivreController extends Controller
    
     }
     
-    
+    /**
+     * Permet de réserver un livre
+     * 
+     * @param type $idLivre L'identifiant du livre à réserver
+     * @return type La vue de description du livre réservé
+     */
     public function reserverLivreAction($idLivre){
         
         $livre=$this->getDoctrine()
@@ -123,8 +155,12 @@ class LivreController extends Controller
         
     }
     
+    /**
+     * Recupère la liste des livres réservés par l'utilisateur connecté
+     * 
+     * @return type La vue affichant la liste des livres réservés par l'utilisateur
+     */
     public function mesReservationsAction(){
-        
         
         $user=$this->getUser();
         
