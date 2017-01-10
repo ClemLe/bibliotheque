@@ -7,8 +7,21 @@ use BibliBundle\Entity\Message;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Classe ContactController
+ * 
+ * Cette classe permet la gestion des messages, leurs ajouts,
+ * leurs affichages ainsi que toutes les fonctionnalités
+ * concernant les messages
+ */
 class ContactController extends Controller
 {
+    /**
+     * Envoyer un message à l'aide d'un formulaire
+     * 
+     * @param Request $request
+     * @return type La vue permettant d'envoyer un message
+     */
     public function indexContactAction(Request $request)
     {   
         
@@ -33,16 +46,18 @@ class ContactController extends Controller
             
             $codeErreur=1;
         }
-        
-                
-        
+           
         return $this->render('BibliBundle:Contact:index.html.twig',array(
           'codeErreur' => $codeErreur,
         ));
     }
     
     
-    
+    /**
+     * Affichage de la liste des messages
+     * 
+     * @return type La liste de tous les messages
+     */
     public function consulterMessageAction(){
         
         $messages = $this->getDoctrine()
@@ -55,6 +70,12 @@ class ContactController extends Controller
        ));
     }
     
+    /**
+     * Affichage d'un message
+     * 
+     * @param type $idMessage L'identifiant du message à afficher
+     * @return type La vue de description du message
+     */
     public function consulterUnMessageAction($idMessage){
         
         $message=$this->getDoctrine()->getRepository('BibliBundle:Message')->findOneBy(array('id' => $idMessage));
@@ -75,7 +96,11 @@ class ContactController extends Controller
         ));
     }
     
-    
+    /**
+     * Compte le nombre de messages stockés dans la base de données
+     * 
+     * @return Response Le nombre de messages 
+     */
     public function calculNombreMessageAction(){
         $nombreMessage=0;
         $messages = $this->getDoctrine()
@@ -91,7 +116,12 @@ class ContactController extends Controller
         return new Response($nombreMessage);
     }
     
-    
+    /**
+     * Supprime un message de la base de données
+     * 
+     * @param type $idMessage L'identifiant du message à supprimer
+     * @return type La vue d'affichage des messages
+     */
     public function supprimerMessageAction($idMessage){
         
      
