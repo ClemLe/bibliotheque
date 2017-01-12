@@ -11,7 +11,7 @@ security:
         in_memory:
             memory: ~
 
-    firewalls:
+    firewalls:   
         main:
             pattern:        ^/
             anonymous:      true
@@ -19,6 +19,7 @@ security:
             form_login:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
+                default_target_path: /rechercher-livre
             logout:
                 path:       fos_user_security_logout
                 target:     /

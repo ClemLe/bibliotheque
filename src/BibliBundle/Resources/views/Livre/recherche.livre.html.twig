@@ -2,7 +2,13 @@
 
 {% block title %}Rechercher un livre{% endblock %}
 
+{% block menuconnecte %}
+    {% include '::menu.connecte.html.twig' %}
+{% endblock %}
+
 {% block body %}
+    
+   <div class="container" id="content">
 
     <div class="row">
         <h3 class="form-signin-heading">Vous pouvez utiliser les filtres pour rechercher un livre !</h3>
@@ -39,9 +45,14 @@
                     
                     </tr>
                     
-                    {% endfor %}   
+                    {% endfor %} 
+            </table>
                         
-                  
+        </div> 
+                    
+    </div>
+            
+    </div>
  {% endblock%}
  
  {% block javascripts %}

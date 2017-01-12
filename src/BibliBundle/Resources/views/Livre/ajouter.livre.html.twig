@@ -3,31 +3,45 @@
 
 {% block title %}Ajouter un livre{% endblock %}
 
+
+
+{% block menuconnecte %}
+    {% include '::menu.connecte.html.twig' %}
+{% endblock %}
+
 {% block body %}
     
-<div class="container">
-    <div class="row">
-        
-        {% if codeErreur == 1 %}
-        <div id="messageUser">
-            <div class="alert alert-success alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
-               <strong>Merci !</strong> Le livre a bien été ajouté !
+ <div class="container" id="content">
+
+    
+    <div class="container">
+        <div class="row">
+             <h3 class="form-signin-heading">Veuillez remplir le formulaire pour reserver un livre </h3>
+
+            {% if codeErreur == 1 %}
+            <div id="messageUser">
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times</a>
+                   <strong>Merci !</strong> Le livre a bien été ajouté !
+                </div>
             </div>
+            {% endif %} 
+
+            <div class="wrapper">
+
+
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_widget(form) }}
+
+                 <button type="submit" name='action'class="btn btn-lg btn-primary btn-block" id="btnContactUs">Ajouter le livre</button>               
+            {{ form_end(form) }}
+
+            </div>
+
         </div>
-        {% endif %} 
-        
-        <div class="wrapper">
-            
-                    
-        {{ form_start(form) }}
-            {{ form_errors(form) }}
-            {{ form_widget(form) }}
-                  
-             <button type="submit" name='action'class="btn btn-lg btn-primary btn-block" id="btnContactUs">Ajouter le livre</button>               
-        {{ form_end(form) }}
-        
-        </div>
+    </div>
+</div>
  
  {% endblock%}
  

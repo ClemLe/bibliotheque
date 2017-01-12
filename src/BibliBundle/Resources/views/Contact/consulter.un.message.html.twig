@@ -3,7 +3,15 @@
 
 {% block title %}Consulter un message{% endblock %}
 
+
+{% block menuconnecte %}
+    {% include '::menu.connecte.html.twig' %}
+{% endblock %}
+
 {% block body %}
+    
+
+<div class="container" id="content">
     
     <div class="wrapper">
         
@@ -42,6 +50,8 @@
         <p><a href="{{ path('bibli_supprimer_un_seul_message', {'idMessage': message.id}) }}" class="btn btn-lg btn-danger btn-block">Supprimer le message</a></p>                       
                         
     </div>
+        
+</div>
    
 {% endblock %}
 

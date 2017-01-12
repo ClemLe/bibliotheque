@@ -2,7 +2,15 @@
 
 {% block title %}Affichage du livre "{{livre.titre}}" {% endblock %}
 
+{% block menuconnecte %}
+    {% include '::menu.connecte.html.twig' %}
+{% endblock %}
+
 {% block body %}
+    
+   <div class="container" id="content">
+
+
  
     <div class="wrapper">
            
@@ -94,5 +102,6 @@
         {% endif %}                     
 
     </div>
+   </div>
                       
  {% endblock%}

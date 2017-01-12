@@ -11,112 +11,161 @@
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
    
-       <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
-       <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-
-
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+      <!-- Custom CSS -->
+    <link href="{{ asset('css/landing-page.css')}}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{{ asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     </head>
     <body>
+        {% block menuconnecte %}
+        {% endblock %}
+        
+        {% block body %}
+                <!-- Navigation -->
+                   <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+                       <div class="container topnav">
+                           <!-- Brand and toggle get grouped for better mobile display -->
+                           <div class="navbar-header">
+                               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                   <span class="sr-only">Toggle navigation</span>
+                                   <span class="icon-bar"></span>
+                                   <span class="icon-bar"></span>
+                                   <span class="icon-bar"></span>
+                               </button>
+                               <a class="navbar-brand topnav" href="#">Accueil</a>
+                           </div>
+                           <!-- Collect the nav links, forms, and other content for toggling -->
+                           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                               <ul class="nav navbar-nav navbar-right">
+                                   
+                                   {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                   <li>
+                                       <a href="{{ path('bibli_rechercher_livre') }}">Espace adhérent</a>
+                                   </li>
+                                    {% else %}                             
+                                    <li>
+                                       <a href="{{ path('fos_user_security_login') }}">Espace adhérent</a>
+                                    </li>                              
+                                    {% endif %}
+                                   <li>
+                                       <a href="#services">Où nous trouver ?</a>
+                                   </li>
+                                   <li>
+                                       <a href="#contact">Contact</a>
+                                   </li>
+                               </ul>
+                           </div>
+                           <!-- /.navbar-collapse -->
+                       </div>
+                       <!-- /.container -->
+                   </nav>
 
-        <div id="menu">
-          <div class="container-fixed">
-             <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                   <div class="navbar-header">
-                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand" href="{{ path('bibli_homepage') }}"><span class="glyphicon glyphicon-home"></span>   Bibliotheque</a>
-                   </div> 
-                   <div class="collapse navbar-collapse">
-                      <ul class="nav navbar-nav">
-                         <li><a href="{{ path('bibli_contact_home') }}"> <span class="glyphicon glyphicon-envelope"></span>  Nous contacter</a></li>
 
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <li><a href="{{ path('bibli_rechercher_livre') }}"> <span class="glyphicon glyphicon-search"></span>  Rechercher un livre</a></li>
-                            <li><a href="{{ path('bibli_afficher_mes_reservations') }}"> <span class="glyphicon glyphicon-list"></span>  Mes reservations</a></li>
+                   <!-- Header -->
+                   <a name="about"></a>
+                   <div class="intro-header">
+                       <div class="container">
 
-                            {% if is_granted("ROLE_EMPLOYE") %}  
-                            <li><a href="{{ path('bibli_ajouter_livre') }}"> <span class="glyphicon glyphicon-plus"></span>  Ajouter un livre</a></li>
-                            <li><a href="{{ path('bibli_consulter_liste_messages') }}"> 
-                                    <div id="messageNonLus"><span class="glyphicon glyphicon-envelope"></span> Messages </div>
-                                </a>
-                           </li>
+                           <div class="row">
+                               <div class="col-lg-12">
+                                   <div class="intro-message">
+                                       <h1>Biblio'Tech</h1>
+                                       <h3>Médiathèque de Beaulieu</h3>
+                                       <hr class="intro-divider">
+                                   </div>
+                               </div>
+                           </div>
 
-                                    </span></a></li>
+                       </div>
+                       <!-- /.container -->
 
-                            <script type="text/javascript">
-                                 $.ajax({
-                                    type: "GET",
-                                    url: "{{ path('bibli_calcul_nombre_message') }}",		
-                                    success: function(nomnbreMessageNonLus){          
-                                            if(nomnbreMessageNonLus >0){
-                                                document.getElementById("messageNonLus").innerHTML +=  "<span class='label label-primary' >"+nomnbreMessageNonLus;
-                                            }
-                                    },
-                                    error: function(){
-                                        console.log("Erreur de recuperation des messages non lus");
-                                    }
-                                });  
-                            </script>                        
-
-                            {% endif %}
-                        {% endif %}
-                      </ul>
-                      <ul class="nav navbar-nav navbar-right">
-                          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{  app.user.username  }} <span class="caret"></span></a>
-                                <ul class="dropdown-menu">       
-                                    <li><a href="{{path('fos_user_change_password')}}" > <span class="glyphicon glyphicon-cog"></span> Modifier son mot de passe </a></li>                        
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{ path('fos_user_security_logout') }}" > <span class="glyphicon glyphicon-off"></span> Déconnexion </a></li>              
-                                </ul>
-                            </li>
-                           {% else %}
-                          <li> <a href="{{ path('fos_user_security_login') }}" > <span class="glyphicon glyphicon-log-in"></span> Se connecter </a></li>
-                          <li> <a href="{{ path('fos_user_registration_register') }}" > <span class="glyphicon glyphicon-edit"></span> Créer un compte </a></li>
-                          {% endif %}
-                      </ul>
                    </div>
-                   <!--/.nav-collapse -->
-                </div>
-             </div>
-          </div>
-        </div>
+                   <!-- /.intro-header -->
+
+                   <!-- Page Content -->
+
+                       <a  name="services"></a>
+                   <div class="content-section-a">
+
+                       <div class="container">
+                           <div class="row">
+                               <div class="col-lg-5 col-sm-6">
+                                   <hr class="section-heading-spacer">
+                                   <div class="clearfix"></div>
+
+                                                       <h2>Ou nous trouver ?</h2>
+                                                       <br>
+                                                       <br>
+                                                       <p class="lead">263 Avenue Général Leclerc, 35700 Rennes</p>
+                               </div>
+                               <div class="google-maps">
+                                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2663.6858346773924!2d-1.6398328849057489!3d48.11629586062279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480edee5d13d72cd%3A0x570f619868b57bc!2sUniversit%C3%A9+de+Rennes+1+Campus+Beaulieu!5e0!3m2!1sfr!2sfr!4v1480374401353" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                               </div>
+                           </div>
+
+                       </div>
+                       <!-- /.container -->
+
+                   </div>
+                   <!-- /.content-section-a -->
 
 
-        <div class="container" id="content">    
+                       <a  name="contact"></a>
+                   <div class="banner">
 
-            {% block body %}
-                <h1>Welcome</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <hr>
-                <h3>Test</h3>
-                <p>Lorem ipsum...</p>
+                       <div class="container">
 
-                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />content1
-                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />content2
-                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />Si ce texte s'affiche, c'est que la scroll bar fonctionne !
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <h2>Contacter nous à : biblitotech @ beaulieu.fr</h2>
+                               </div>
+                           </div>
+
+                       </div>
+                       <!-- /.container -->
+
+                   </div>
+                   <!-- /.banner -->
+
+                     <!-- Footer -->
+                    <footer>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a href="#">Accueil</a>
+                                        </li>
+                                        <li class="footer-menu-divider">&sdot;</li>
+                                        <li>
+                                            <a href="#about">Espace adhérent</a>
+                                        </li>
+                                        <li class="footer-menu-divider">&sdot;</li>
+                                        <li>
+                                            <a href="#services">Où nous trouver ?</a>
+                                        </li>
+                                        <li class="footer-menu-divider">&sdot;</li>
+                                        <li>
+                                            <a href="#contact">Contact</a>
+                                        </li>
+                                    </ul>
+                                    <p class="copyright text-muted small">Copyright &copy; MIAGE 2017. Tous droits réservés</p>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
             {% endblock %} 
 
-        </div>
+      
 
         {% block javascripts %}{% endblock %}
 
 
-         <div id="footer" class="container">
-            <nav class="navbar navbar-default navbar-fixed-bottom">
-                <div class="navbar-inner navbar-content-center">
-                    <p class="text-muted credit"> <span class="glyphicon glyphicon-copyright-mark"></span>  Bibliotheque - Tous droits réservés - 2016. </p>
-                </div>
-            </nav>
-        </div>
+       
    </body>
 </html>

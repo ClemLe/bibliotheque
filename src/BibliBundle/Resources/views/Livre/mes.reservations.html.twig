@@ -2,7 +2,14 @@
 
 {% block title %}Mes réservations{% endblock %}
 
+
+{% block menuconnecte %}
+    {% include '::menu.connecte.html.twig' %}
+{% endblock %}
+
 {% block body %}
+    
+   <div class="container" id="content">
 
     <div class="row">
         <h3 class="form-signin-heading">Voici la liste de mes reservations (maximum 3 livres !)</h3>
@@ -43,4 +50,6 @@
                 </div> 
         {% endif %}
     </div>  
+    
+   </div> 
  {% endblock%}

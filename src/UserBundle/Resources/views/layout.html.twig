@@ -4,7 +4,20 @@
 Changer de mot de passe
 {% endblock %}
 
+
+{% block menuconnecte %}
+    {% include '::menu.connecte.html.twig' %}
+{% endblock %}
+
 {% block body %}
+    
+     <div class="container" id="content">   
+            
+            
 	{% block fos_user_content %}
 	{% endblock fos_user_content %}
+        
+             
+     </div>  
+
 {% endblock %} 
